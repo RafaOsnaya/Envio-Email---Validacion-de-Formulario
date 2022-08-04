@@ -1,7 +1,13 @@
 body {
-    background: #43cea2;
+    /* background: #43cea2;
     background: -webkit-linear-gradient(to right, #185a9d, #43cea2);
-    background: linear-gradient(to right, #185a9d, #43cea2); 
+    background: linear-gradient(to right, #185a9d, #43cea2); */
+    
+    
+    background: rgb(151,34,195);
+    background: -webkit-linear-gradient(0deg, rgba(151,34,195,1) 0%, rgba(253,187,45,1)100%);
+    
+
 }
 #contenido {
     background-color: white;
