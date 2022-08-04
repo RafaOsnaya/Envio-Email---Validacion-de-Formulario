@@ -2,6 +2,10 @@
 const btnEnviar = document.querySelector("#enviar");
 const formulario = document.querySelector("#enviar-mail");
 
+//Expresion Regular Email
+const exRegular =
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 //Variales de inputs de formulario
 
 const email = document.querySelector("#email");
@@ -23,7 +27,7 @@ function eventListeners() {
 
 //Encargada de arrancar toda la funcionalidad una vez cargado el documento por primera vez
 function iniciarApp() {
-  btnEnviar.disabled = true; //deshabilita el boton
+  btnEnviar.disabled = true; //deshabilita el boton enviar
   btnEnviar.classList.add("cursor-not-allowed", "opacity-50");
 }
 
@@ -33,7 +37,7 @@ function validarFormulario(e) {
     //Elimina los errores
     const error = document.querySelector("p.error");
     if (error) {
-        error.remove();
+      error.remove();
     }
 
     e.target.classList.remove("boder", "border-red-500");
@@ -46,15 +50,12 @@ function validarFormulario(e) {
   }
 
   if (e.target.type === "email") {
-    const exRegular =
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
     if (exRegular.test(e.target.value)) {
       //Elimina los errores
       const error = document.querySelector("p.error");
       if (error) {
         error.remove();
-    }
+      }
 
       e.target.classList.remove("boder", "border-red-500");
       e.target.classList.add("boder", "border-green-500");
@@ -64,6 +65,15 @@ function validarFormulario(e) {
 
       mostrarError("Email no valido");
     }
+  }
+
+  if (
+    exRegular.test(email.value) &&
+    asunto.value !== "" &&
+    mensaje.value !== ""
+  ) {
+    btnEnviar.disabled = false; //habilita el boton enviar
+    btnEnviar.classList.remove("cursor-not-allowed", "opacity-50");
   }
 }
 
